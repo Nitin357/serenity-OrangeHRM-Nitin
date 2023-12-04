@@ -4,12 +4,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Then;
 import net.thucydides.core.annotations.Steps;
+import org.junit.Assert;
 import starter.navigation.NavigateTo;
-import starter.search.SearchFor;
-import starter.search.SearchResult;
+import starter.pages.loginPageActions;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static starter.matchers.TextMatcher.textOf;
 
 public class SearchOnDuckDuckGoStepDefinitions {
 
@@ -17,30 +16,29 @@ public class SearchOnDuckDuckGoStepDefinitions {
     NavigateTo navigateTo;
 
     @Steps
-    SearchFor searchFor;
+    loginPageActions login;
 
-    @Steps
-    SearchResult searchResult;
 
-    @Given("^(?:.*) is on the DuckDuckGo home page")
-    public void i_am_on_the_DuckDuckGo_home_page() {
-        navigateTo.theDuckDuckGoHomePage();
+    @Given("User is on login page")
+    public void user_is_on_login_page() {
+        navigateTo.theHomePage();
+    }
+    @When("the user enters valid username and password credentials")
+    public void the_user_enters_valid_username_and_password_credentials() {
+        login.enterUsernameAndPassword("Admin", "admin");
+    }
+    @When("clicks the login button")
+    public void clicks_the_login_button() {
+        login.clickLoginButton();
+
+    }
+    @Then("user should be redirected to the dashboard")
+    public void user_should_be_redirected_to_the_dashboard() {
+
+        Assert.assertTrue(login.isErrorShown());
+
     }
 
-    @When("^s?he (?:searches|has searched) for \"(.*)\"")
-    public void i_search_for(String term) {
-        searchFor.term(term);
-    }
 
 
-    @When("^s?he (?:searches|has searched) again for \"(.*)\"")
-    public void i_search_again_for(String term) {
-        searchFor.termOnSearchResultsPage(term);
-    }
-
-    @Then("all the result titles should contain the word {string}")
-    public void all_the_result_titles_should_contain_the_word(String expectedTerm) {
-        assertThat(searchResult.titles())
-                .allMatch(title -> textOf(title).containsIgnoringCase(expectedTerm));
-    }
 }

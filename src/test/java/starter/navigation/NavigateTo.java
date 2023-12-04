@@ -4,10 +4,10 @@ import net.thucydides.core.annotations.Step;
 
 public class NavigateTo {
 
-    DuckDuckGoHomePage duckDuckGoHomePage;
+    HomePage homePage;
 
-    @Step("Open the DuckDuckGo home page")
-    public void theDuckDuckGoHomePage() {
-        duckDuckGoHomePage.open();
+    @Step("Open the home page")
+    public void theHomePage() {
+        homePage.open();
     }
 }
