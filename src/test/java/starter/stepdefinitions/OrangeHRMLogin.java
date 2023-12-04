@@ -8,7 +8,6 @@ import org.junit.Assert;
 import starter.navigation.NavigateTo;
 import starter.pages.loginPageActions;
 
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class OrangeHRMLogin {
 
