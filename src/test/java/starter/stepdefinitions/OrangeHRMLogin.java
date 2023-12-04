@@ -10,7 +10,7 @@ import starter.pages.loginPageActions;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SearchOnDuckDuckGoStepDefinitions {
+public class OrangeHRMLogin {
 
     @Steps
     NavigateTo navigateTo;
@@ -38,7 +38,5 @@ public class SearchOnDuckDuckGoStepDefinitions {
         Assert.assertTrue(login.isErrorShown());
 
     }
-
-
 
 }
